@@ -18,7 +18,7 @@ const Footer: React.FC = () => (
       <div className="flex items-center gap-5 text-xs text-zinc-400 dark:text-zinc-600">
         <span>© 2024 Rahul Kumar</span>
         <a
-          href="mailto:rahul.link1415@gmail.com"
+          href="mailto:rahul.link1415@outlook.com"
           className="hover:text-violet-600 dark:hover:text-violet-400"
         >
           Contact

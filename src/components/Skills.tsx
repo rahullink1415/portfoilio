@@ -5,23 +5,24 @@ const Skills: React.FC = () => {
     {
       title: 'Android & Mobile',
       skills: [
-        'Kotlin', 'Java', 'Jetpack Compose', 'Android SDK',
+        'Kotlin', 'Java', 'NDK', 'Jetpack Compose', 'Android SDK',
         'MVVM', 'Clean Architecture', 'Coroutines', 'Flow',
-        'WorkManager', 'Lifecycle', 'Navigation Component',
+        'Room', 'Hilt / Dagger 2', 'BLE', 'WorkManager',
       ],
     },
     {
-      title: 'APIs & Data',
+      title: 'AI & Automation',
       skills: [
-        'REST APIs', 'Retrofit', 'OkHttp', 'Firebase',
-        'Room Database', 'SQLite', 'DataStore', 'BLE / IoT',
+        'LangChain', 'LangGraph', 'Agentic AI', 'Prompt Engineering',
+        'N8N Automation', 'Chatbots', 'LLMs', 'Python',
       ],
     },
     {
-      title: 'Tools & Practices',
+      title: 'Web, APIs & Tools',
       skills: [
-        'Git', 'GitHub', 'Hilt / Dagger 2', 'Agile / Scrum',
-        'CI/CD', 'JUnit', 'Espresso', 'ProGuard', 'Play Console',
+        'REST APIs', 'Firebase', 'Retrofit', 'Node.js',
+        'React', 'MongoDB', 'Docker', 'Git', 'CI/CD',
+        'Play Console', 'Agile / Scrum',
       ],
     },
   ];
@@ -56,6 +57,23 @@ const Skills: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Domains row */}
+        <div className="mt-12 pt-10 border-t border-zinc-100 dark:border-zinc-800">
+          <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-4">
+            Industry Domains
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {['LegalTech', 'Healthcare', 'E-commerce', 'IoT', 'Hospitality', 'Social / Dating', 'FinTech'].map((d) => (
+              <span
+                key={d}
+                className="px-3 py-1.5 text-sm border border-violet-500/20 bg-violet-500/5 text-violet-600 dark:text-violet-400 rounded-lg"
+              >
+                {d}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

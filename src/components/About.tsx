@@ -1,43 +1,42 @@
 import React from 'react';
-import { Smartphone, Code2, Zap, Users } from 'lucide-react';
+import { Smartphone, Brain, Zap, Users } from 'lucide-react';
 
 const About: React.FC = () => {
   const highlights = [
     {
       icon: Smartphone,
       title: 'Mobile Excellence',
-      description: '7+ years building production-grade Android apps serving 100K+ daily users.',
+      description: '7+ years architecting production Android apps across LegalTech, Healthcare, E-commerce, IoT & Hospitality.',
     },
     {
-      icon: Code2,
-      title: 'Clean Architecture',
-      description: 'Deep expertise in MVVM, Hilt DI, and scalable, maintainable codebases.',
+      icon: Brain,
+      title: 'GenAI & Automation',
+      description: 'Building AI chatbots with LangChain/LangGraph and workflow automations with N8N.',
     },
     {
       icon: Zap,
       title: 'Performance First',
-      description: 'Consistent 60% crash reduction and measurable performance improvements.',
+      description: 'NDK integration, crash-rate optimisation, BLE protocols, and smooth 60fps Compose UIs.',
     },
     {
       icon: Users,
       title: 'Team Leadership',
-      description: 'Mentored developers, led code reviews, and drove agile ceremonies.',
+      description: 'Led mobile teams in Agile sprints, mentored engineers, and drove architecture decisions.',
     },
   ];
 
-  const stack = ['Kotlin', 'Java', 'Jetpack Compose', 'MVVM', 'Firebase', 'Hilt', 'Retrofit', 'Room', 'Git'];
+  const stack = ['Kotlin', 'Java', 'NDK', 'Jetpack Compose', 'MVVM', 'Hilt', 'Room', 'BLE', 'LangChain', 'LangGraph', 'N8N', 'Docker'];
 
   return (
     <section id="about" className="py-24 bg-zinc-50 dark:bg-zinc-900">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section label */}
         <div className="mb-14">
           <p className="font-mono text-xs text-violet-600 dark:text-violet-400 uppercase tracking-widest mb-3">
             About me
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight">
-            Android Developer &<br />
-            Mobile Architecture Expert
+            Sr. Android Developer &<br />
+            Full-Stack Engineer
           </h2>
         </div>
 
@@ -46,15 +45,14 @@ const About: React.FC = () => {
           <div>
             <div className="space-y-4 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8">
               <p>
-                Android Developer with 7+ years of experience building scalable,
-                high-performance mobile applications. I specialize in Kotlin and
-                Jetpack Compose with a focus on product quality, clean architecture,
-                and user-centric design.
+                Innovative Android Developer with 7+ years of experience in Jetpack Compose,
+                Kotlin, Java, and NDK. I architect robust, scalable Android apps across diverse
+                industries — from LegalTech and Healthcare to E-commerce, IoT, and Hospitality.
               </p>
               <p>
-                Known for driving performance optimizations, crash reductions, and
-                seamless feature rollouts — I bring an ownership mindset and strong
-                cross-functional collaboration to every project.
+                Currently expanding into <span className="text-violet-600 dark:text-violet-400 font-medium">GenAI</span> — building
+                conversational chatbots with LangChain & LangGraph, and automating end-to-end
+                workflows using N8N. Certified in Generative AI, LLMs, and Prompt Engineering.
               </p>
             </div>
 
@@ -74,9 +72,9 @@ const About: React.FC = () => {
             <div className="flex gap-3 p-4 rounded-xl border border-violet-500/20 bg-violet-500/5">
               <div className="w-1 rounded-full bg-violet-500 shrink-0 self-stretch" />
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                <span className="text-violet-600 dark:text-violet-400 font-medium">Seeking: </span>
-                Senior Android Developer roles (Remote / Hybrid) at product-first
-                companies focused on innovation and scale.
+                <span className="text-violet-600 dark:text-violet-400 font-medium">Currently: </span>
+                Sr. Android Developer at Cepoch — leading Android development with modern
+                architecture and AI-powered feature integration.
               </p>
             </div>
           </div>

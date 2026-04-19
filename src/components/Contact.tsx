@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
     );
-    window.location.href = `mailto:rahul.link1415@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:rahul.link1415@outlook.com?subject=${subject}&body=${body}`;
     setTimeout(() => {
       setForm({ name: '', email: '', subject: '', message: '' });
       setSubmitting(false);
@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
   const socials = [
     { icon: Github, href: 'https://github.com/rahullink1415', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/rahullink1415', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:rahul.link1415@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:rahul.link1415@outlook.com', label: 'Email' },
   ];
 
   const inputClass =
@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Contact cards */}
             <a
-              href="mailto:rahul.link1415@gmail.com"
+              href="mailto:rahul.link1415@outlook.com"
               className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-violet-500/40 group"
             >
               <div className="w-9 h-9 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
               <div className="min-w-0">
                 <p className="text-xs text-zinc-400 dark:text-zinc-500">Email</p>
                 <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-violet-600 dark:group-hover:text-violet-400 truncate">
-                  rahul.link1415@gmail.com
+                  rahul.link1415@outlook.com
                 </p>
               </div>
             </a>

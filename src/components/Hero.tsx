@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 
-const roles = ['Android Developer', 'Jetpack Compose Expert', 'Kotlin Specialist', 'Mobile Architect'];
+const roles = ['Senior Android Engineer', 'Jetpack Compose Expert', 'GenAI Certified', 'Full-Stack Engineer'];
 
 const Hero: React.FC = () => {
   const [text, setText] = useState('');
@@ -34,14 +34,14 @@ const Hero: React.FC = () => {
 
   const stats = [
     { value: '7+', label: 'Years Experience' },
-    { value: '100K+', label: 'Daily Active Users' },
-    { value: '98%', label: 'Project Success Rate' },
+    { value: '10+', label: 'Apps Shipped' },
+    { value: '98%+', label: 'Crash-Free Rate' },
   ];
 
   const socials = [
     { icon: Github, href: 'https://github.com/rahullink1415', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/rahullink1415', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:rahul.link1415@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:rahul.link1415@outlook.com', label: 'Email' },
   ];
 
   return (
@@ -80,8 +80,8 @@ const Hero: React.FC = () => {
 
         {/* Description */}
         <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto mb-12 leading-relaxed">
-          Building scalable, high-performance Android applications with clean architecture,
-          Jetpack Compose, and a focus on exceptional user experiences.
+          Senior Android Engineer crafting scalable, crash-resistant mobile apps with Kotlin,
+          Jetpack Compose & Android NDK — now expanding into GenAI, LangChain, and Agentic AI.
         </p>
 
         {/* Stats */}
@@ -112,7 +112,7 @@ const Hero: React.FC = () => {
             View Projects
           </a>
           <a
-            href="mailto:rahul.link1415@gmail.com?subject=from%20portfolio%20github"
+            href="mailto:rahul.link1415@outlook.com?subject=from%20portfolio"
             className="px-6 py-2.5 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-sm font-medium rounded-lg w-full sm:w-auto text-center"
           >
             Get in Touch

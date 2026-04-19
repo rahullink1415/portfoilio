@@ -7,64 +7,64 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
+      title: 'ModioLegal & CoreNet Global',
+      description:
+        'Audio-based legal content platform with dynamic content delivery, offline sync, and seamless playback for legal professionals.',
+      image:
+        'https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Kotlin', 'MVVM', 'Room', 'ExoPlayer', 'Retrofit'],
+      category: 'Android',
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: true,
+    },
+    {
+      id: 2,
       title: 'Go Hotel Life',
       description:
-        'Hotel automation app with BLE-based room access and guest services for seamless hospitality experiences.',
+        'Hotel guest automation — BLE-based room access, check-in, food orders, and POS integration for a seamless hospitality experience.',
       image:
         'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Java', 'BLE', 'Android SDK', 'Room'],
+      technologies: ['Java', 'BLE', 'Android SDK', 'Room', 'POS SDK'],
       category: 'Android',
       liveUrl: 'https://play.google.com/store/apps/details?id=sdei.trumpbeach.resort',
       githubUrl: '#',
       featured: true,
     },
     {
-      id: 2,
+      id: 3,
       title: 'Date.Com',
       description:
-        'Modern dating app with real-time chat, deep linking, and polished Jetpack Compose animations.',
+        'Social dating app with real-time chat, deep linking, animated Jetpack Compose UI, and smart matching features.',
       image:
         'https://images.pexels.com/photos/1024248/pexels-photo-1024248.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Jetpack Compose', 'Sendbird', 'Branch.io', 'Kotlin'],
+      technologies: ['Jetpack Compose', 'Sendbird', 'Branch.io', 'Kotlin', 'Firebase'],
       category: 'Android',
       liveUrl: 'https://play.google.com/store/apps/details?id=org.date.dot.com',
       githubUrl: '#',
       featured: true,
     },
     {
-      id: 3,
-      title: 'E-Commerce App',
-      description:
-        'Full-featured shopping application with secure payments, product catalog, and user management.',
-      image:
-        'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Kotlin', 'MVVM', 'Retrofit', 'Firebase'],
-      category: 'Android',
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false,
-    },
-    {
       id: 4,
-      title: 'Fitness Tracker',
+      title: 'AI Chatbots & Automation',
       description:
-        'Health tracking app with real-time sync, workout plans, and wearable device integration.',
+        'Conversational AI chatbots built with LangChain & LangGraph agents; end-to-end workflow automation powered by N8N.',
       image:
-        'https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Jetpack Compose', 'Room', 'WorkManager', 'Health Connect'],
-      category: 'Android',
+        'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['LangChain', 'LangGraph', 'N8N', 'Python', 'Agentic AI'],
+      category: 'AI',
       liveUrl: '#',
       githubUrl: '#',
-      featured: false,
+      featured: true,
     },
     {
       id: 5,
-      title: 'Banking Solution',
+      title: 'IoT Smart Home',
       description:
-        'Secure banking app with biometric authentication, transaction history, and real-time notifications.',
+        'Smart home control application with IoT device integration, BLE automation rules, and real-time energy monitoring.',
       image:
-        'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Kotlin', 'Biometric API', 'Encryption', 'MVVM'],
+        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Kotlin', 'MQTT', 'BLE', 'Firebase IoT', 'MVVM'],
       category: 'Android',
       liveUrl: '#',
       githubUrl: '#',
@@ -72,20 +72,20 @@ const Projects: React.FC = () => {
     },
     {
       id: 6,
-      title: 'IoT Smart Home',
+      title: 'Healthcare Patient App',
       description:
-        'Smart home control app with IoT device integration, automation rules, and energy monitoring.',
+        'Patient-facing healthcare app with appointment booking, medical records, and real-time doctor consultation features.',
       image:
-        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Kotlin', 'MQTT', 'BLE', 'Firebase IoT'],
-      category: 'IoT',
+        'https://images.pexels.com/photos/3376790/pexels-photo-3376790.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Hilt', 'REST APIs'],
+      category: 'Android',
       liveUrl: '#',
       githubUrl: '#',
       featured: false,
     },
   ];
 
-  const categories = ['All', 'Android', 'IoT'];
+  const categories = ['All', 'Android', 'AI'];
   const filtered = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
 
   return (
@@ -134,7 +134,6 @@ const Projects: React.FC = () => {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Hover overlay with links */}
                 <div className="absolute inset-0 bg-zinc-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3 gap-2">
                   {project.liveUrl !== '#' && (
                     <a
