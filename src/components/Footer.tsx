@@ -1,102 +1,48 @@
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 
-interface FooterProps {
-  darkMode: boolean;
-}
-
-const Footer: React.FC<FooterProps> = ({ darkMode }) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  return (
-    <footer
-      className={`py-12 ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} relative`}
-    >
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <div className="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-2">
-                Rahul Kumar
-              </div>
-              <p
-                className={`text-sm ${
-                  darkMode ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Android Developer & Jetpack Compose Expert
-              </p>
-            </div>
-
-            <div
-              className={`flex items-center text-sm ${
-                darkMode ? 'text-gray-400' : 'text-gray-600'
-              }`}
-            >
-              Made with{' '}
-              <Heart
-                size={16}
-                className="mx-1 text-red-500 fill-current animate-pulse"
-              />{' '}
-              using React & Tailwind CSS
-            </div>
-          </div>
-
-          <hr
-            className={`my-8 ${
-              darkMode ? 'border-gray-700' : 'border-gray-300'
-            }`}
-          />
-
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm">
-            <p
-              className={`mb-4 md:mb-0 ${
-                darkMode ? 'text-gray-400' : 'text-gray-600'
-              }`}
-            >
-              © 2024 Rahul Kumar. All rights reserved.
-            </p>
-
-            <div className="flex space-x-6">
-              <a
-                href="mailto:rahul.link1415@gmail.com"
-                className={`hover:text-green-600 transition-colors duration-200 ${
-                  darkMode ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Contact
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rahullink1415"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`hover:text-green-600 transition-colors duration-200 ${
-                  darkMode ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
+const Footer: React.FC = () => (
+  <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-8">
+    <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Brand */}
+      <div className="flex items-center gap-2">
+        <span className="w-6 h-6 bg-violet-600 rounded-md flex items-center justify-center text-white text-xs font-bold shrink-0">
+          RK
+        </span>
+        <span className="text-sm text-zinc-400 dark:text-zinc-500">
+          Rahul Kumar · Android Developer
+        </span>
       </div>
 
-      {/* Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ${
-          darkMode
-            ? 'bg-gray-700 text-white hover:bg-green-600'
-            : 'bg-white text-gray-600 hover:bg-green-600 hover:text-white'
-        }`}
-        aria-label="Back to top"
-      >
-        <ArrowUp size={20} />
-      </button>
-    </footer>
-  );
-};
+      {/* Links */}
+      <div className="flex items-center gap-5 text-xs text-zinc-400 dark:text-zinc-600">
+        <span>© 2024 Rahul Kumar</span>
+        <a
+          href="mailto:rahul.link1415@gmail.com"
+          className="hover:text-violet-600 dark:hover:text-violet-400"
+        >
+          Contact
+        </a>
+        <a
+          href="https://www.linkedin.com/in/rahullink1415"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-violet-600 dark:hover:text-violet-400"
+        >
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    {/* Back to top */}
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className="fixed bottom-6 right-6 w-9 h-9 flex items-center justify-center rounded-full bg-violet-600 hover:bg-violet-500 text-white shadow-lg"
+      aria-label="Back to top"
+    >
+      <ArrowUp size={16} />
+    </button>
+  </footer>
+);
 
 export default Footer;

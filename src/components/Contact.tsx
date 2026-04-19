@@ -1,311 +1,179 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Briefcase } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, Briefcase } from 'lucide-react';
 
-interface ContactProps {
-  darkMode: boolean;
-}
-
-const Contact: React.FC<ContactProps> = ({ darkMode }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const Contact: React.FC = () => {
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio');
+    setSubmitting(true);
+    const subject = encodeURIComponent(form.subject || 'Contact from Portfolio');
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
     );
-    const mailtoLink = `mailto:rahul.link1415@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Reset form after a short delay
+    window.location.href = `mailto:rahul.link1415@gmail.com?subject=${subject}&body=${body}`;
     setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
+      setForm({ name: '', email: '', subject: '', message: '' });
+      setSubmitting(false);
     }, 1000);
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      content: 'rahul.link1415@gmail.com',
-      href: 'mailto:rahul.link1415@gmail.com',
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      content: 'Available upon request',
-      href: '#',
-    },
-    {
-      icon: Briefcase,
-      title: 'Availability',
-      content: 'Open for opportunities',
-      href: '#',
-    },
-  ];
-
-  const socialLinks = [
+  const socials = [
     { icon: Github, href: 'https://github.com/rahullink1415', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/rahullink1415', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:rahul.link1415@gmail.com', label: 'Email' },
   ];
 
-  return (
-    <section
-      id="contact"
-      className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
-    >
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className={`text-4xl md:text-5xl font-bold mb-6 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              📫 Contact{' '}
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Me
-              </span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto mb-8"></div>
-            <p
-              className={`text-lg max-w-2xl mx-auto ${
-                darkMode ? 'text-gray-400' : 'text-gray-600'
-              }`}
-            >
-              Looking for a Senior Android Developer? Let's discuss how I can contribute 
-              to your product-first company with clean architecture and innovative solutions.
-            </p>
-          </div>
+  const inputClass =
+    'w-full px-3.5 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-violet-500';
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
+  const labelClass = 'block text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-1.5';
+
+  return (
+    <section id="contact" className="py-24 bg-zinc-50 dark:bg-zinc-900">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="mb-14">
+          <p className="font-mono text-xs text-violet-600 dark:text-violet-400 uppercase tracking-widest mb-3">
+            Contact
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-50">
+            Let's work together
+          </h2>
+          <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400 max-w-md">
+            Looking for a Senior Android Developer? I'm open to new opportunities
+            and would love to connect.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-5 gap-12">
+          {/* Left column */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Contact cards */}
+            <a
+              href="mailto:rahul.link1415@gmail.com"
+              className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-violet-500/40 group"
+            >
+              <div className="w-9 h-9 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
+                <Mail size={15} className="text-violet-600 dark:text-violet-400" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-zinc-400 dark:text-zinc-500">Email</p>
+                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-violet-600 dark:group-hover:text-violet-400 truncate">
+                  rahul.link1415@gmail.com
+                </p>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+              <div className="w-9 h-9 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
+                <Briefcase size={15} className="text-violet-600 dark:text-violet-400" />
+              </div>
+              <div>
+                <p className="text-xs text-zinc-400 dark:text-zinc-500">Status</p>
+                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  Open to opportunities
+                </p>
+              </div>
+            </div>
+
+            {/* Social links */}
             <div>
-              <h3
-                className={`text-2xl font-bold mb-8 ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Let's Connect
-              </h3>
-              
-              <div className="space-y-6 mb-8">
-                {contactInfo.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center p-4 rounded-lg transition-all duration-300 hover:scale-105 ${
-                      darkMode
-                        ? 'bg-gray-700/50 hover:bg-gray-700'
-                        : 'bg-gray-50 hover:bg-gray-100'
-                    }`}
+              <p className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-3">
+                Find me on
+              </p>
+              <div className="flex gap-2">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    aria-label={label}
+                    className="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-500 dark:text-zinc-400 hover:text-violet-600 dark:hover:text-violet-400 hover:border-violet-500/40"
                   >
-                    <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center mr-4">
-                      <item.icon size={20} className="text-white" />
-                    </div>
-                    <div>
-                      <h4
-                        className={`font-semibold ${
-                          darkMode ? 'text-white' : 'text-gray-900'
-                        }`}
-                      >
-                        {item.title}
-                      </h4>
-                      <p
-                        className={`text-sm ${
-                          darkMode ? 'text-gray-400' : 'text-gray-600'
-                        }`}
-                      >
-                        {item.content}
-                      </p>
-                    </div>
-                  </div>
+                    <Icon size={17} />
+                  </a>
                 ))}
               </div>
+            </div>
+          </div>
 
-              <div className="mb-8">
-                <h4
-                  className={`text-lg font-semibold mb-4 ${
-                    darkMode ? 'text-white' : 'text-gray-900'
-                  }`}
-                >
-                  Follow Me
-                </h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.href}
-                      target={social.href.startsWith('http') ? '_blank' : undefined}
-                      rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                        darkMode
-                          ? 'bg-gray-700 text-gray-300 hover:bg-green-600 hover:text-white'
-                          : 'bg-gray-100 text-gray-600 hover:bg-green-600 hover:text-white'
-                      }`}
-                      aria-label={social.label}
-                    >
-                      <social.icon size={20} />
-                    </a>
-                  ))}
+          {/* Right column: form */}
+          <div className="lg:col-span-3 p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label className={labelClass}>Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your name"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your@email.com"
+                    className={inputClass}
+                  />
                 </div>
               </div>
 
-              {/* Quick Contact Button */}
-              <a
-                href="mailto:rahul.link1415@gmail.com?subject=from%20portfolio%20github"
-                className="inline-block w-full text-center py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-              >
-                Quick Email Contact
-              </a>
-            </div>
+              <div>
+                <label className={labelClass}>Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  required
+                  placeholder="Senior Android Developer Opportunity"
+                  className={inputClass}
+                />
+              </div>
 
-            {/* Contact Form */}
-            <div
-              className={`p-8 rounded-xl ${
-                darkMode ? 'bg-gray-700/50' : 'bg-gray-50'
-              }`}
-            >
-              <h3
-                className={`text-2xl font-bold mb-6 ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}
+              <div>
+                <label className={labelClass}>Message</label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  placeholder="Tell me about your project or opportunity..."
+                  className={`${inputClass} resize-none`}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg"
               >
-                Send Message
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      className={`block text-sm font-medium mb-2 ${
-                        darkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-600 transition-colors duration-200 ${
-                        darkMode
-                          ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400'
-                          : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                      }`}
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className={`block text-sm font-medium mb-2 ${
-                        darkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-600 transition-colors duration-200 ${
-                        darkMode
-                          ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400'
-                          : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                      }`}
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label
-                    className={`block text-sm font-medium mb-2 ${
-                      darkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-600 transition-colors duration-200 ${
-                      darkMode
-                        ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400'
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                    }`}
-                    placeholder="Senior Android Developer Opportunity"
-                  />
-                </div>
-                
-                <div>
-                  <label
-                    className={`block text-sm font-medium mb-2 ${
-                      darkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-600 transition-colors duration-200 resize-vertical ${
-                      darkMode
-                        ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400'
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                    }`}
-                    placeholder="Tell me about your Android development needs..."
-                  />
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
-                    isSubmitting ? 'animate-pulse' : ''
-                  }`}
-                >
-                  {isSubmitting ? (
-                    'Opening Email Client...'
-                  ) : (
-                    <>
-                      Send Message
-                      <Send size={20} className="inline ml-2" />
-                    </>
-                  )}
-                </button>
-              </form>
-            </div>
+                {submitting ? (
+                  'Opening Email...'
+                ) : (
+                  <>
+                    Send Message
+                    <Send size={15} />
+                  </>
+                )}
+              </button>
+            </form>
           </div>
         </div>
       </div>

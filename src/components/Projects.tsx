@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, Filter, Smartphone } from 'lucide-react';
+import { ExternalLink, Github, Smartphone } from 'lucide-react';
 
-interface ProjectsProps {
-  darkMode: boolean;
-}
-
-const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
-  const [activeFilter, setActiveFilter] = useState('All');
+const Projects: React.FC = () => {
+  const [filter, setFilter] = useState('All');
 
   const projects = [
     {
       id: 1,
       title: 'Go Hotel Life',
-      description: 'Enhanced guest experience with hotel automation via BLE-based room access & services. Modern hotel management system with seamless integration.',
-      image: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description:
+        'Hotel automation app with BLE-based room access and guest services for seamless hospitality experiences.',
+      image:
+        'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Java', 'BLE', 'Android SDK', 'Room'],
       category: 'Android',
       liveUrl: 'https://play.google.com/store/apps/details?id=sdei.trumpbeach.resort',
@@ -23,8 +21,10 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
     {
       id: 2,
       title: 'Date.Com',
-      description: 'Modern dating app with real-time chat, deep linking & animated UI. Built with Jetpack Compose for smooth user experience and engaging interactions.',
-      image: 'https://images.pexels.com/photos/1024248/pexels-photo-1024248.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description:
+        'Modern dating app with real-time chat, deep linking, and polished Jetpack Compose animations.',
+      image:
+        'https://images.pexels.com/photos/1024248/pexels-photo-1024248.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Jetpack Compose', 'Sendbird', 'Branch.io', 'Kotlin'],
       category: 'Android',
       liveUrl: 'https://play.google.com/store/apps/details?id=org.date.dot.com',
@@ -33,9 +33,11 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
     },
     {
       id: 3,
-      title: 'E-Commerce Mobile App',
-      description: 'Full-featured e-commerce Android application with secure payments, product catalog, and user management. Built with modern Android architecture.',
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
+      title: 'E-Commerce App',
+      description:
+        'Full-featured shopping application with secure payments, product catalog, and user management.',
+      image:
+        'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Kotlin', 'MVVM', 'Retrofit', 'Firebase'],
       category: 'Android',
       liveUrl: '#',
@@ -44,9 +46,11 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
     },
     {
       id: 4,
-      title: 'Fitness Tracker App',
-      description: 'Health and fitness tracking application with real-time data sync, workout plans, and progress analytics. Integrated with wearable devices.',
-      image: 'https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=800',
+      title: 'Fitness Tracker',
+      description:
+        'Health tracking app with real-time sync, workout plans, and wearable device integration.',
+      image:
+        'https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Jetpack Compose', 'Room', 'WorkManager', 'Health Connect'],
       category: 'Android',
       liveUrl: '#',
@@ -55,9 +59,11 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
     },
     {
       id: 5,
-      title: 'Banking Mobile Solution',
-      description: 'Secure banking application with biometric authentication, transaction history, and real-time notifications. Focus on security and user experience.',
-      image: 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=800',
+      title: 'Banking Solution',
+      description:
+        'Secure banking app with biometric authentication, transaction history, and real-time notifications.',
+      image:
+        'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Kotlin', 'Biometric API', 'Encryption', 'MVVM'],
       category: 'Android',
       liveUrl: '#',
@@ -66,9 +72,11 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
     },
     {
       id: 6,
-      title: 'IoT Smart Home App',
-      description: 'Smart home control application with IoT device integration, automation rules, and energy monitoring. Real-time device status and control.',
-      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+      title: 'IoT Smart Home',
+      description:
+        'Smart home control app with IoT device integration, automation rules, and energy monitoring.',
+      image:
+        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['Kotlin', 'MQTT', 'BLE', 'Firebase IoT'],
       category: 'IoT',
       liveUrl: '#',
@@ -78,132 +86,107 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
   ];
 
   const categories = ['All', 'Android', 'IoT'];
-
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filtered = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
 
   return (
-    <section
-      id="projects"
-      className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
-    >
-      <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className={`text-4xl md:text-5xl font-bold mb-6 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Project{' '}
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Highlights
-              </span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto mb-8"></div>
-            <p
-              className={`text-lg max-w-2xl mx-auto ${
-                darkMode ? 'text-gray-400' : 'text-gray-600'
-              }`}
-            >
-              A showcase of Android applications built with modern architecture, 
-              clean code principles, and exceptional user experiences.
+    <section id="projects" className="py-24 bg-zinc-50 dark:bg-zinc-900">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Header row */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+          <div>
+            <p className="font-mono text-xs text-violet-600 dark:text-violet-400 uppercase tracking-widest mb-3">
+              Work
             </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-50">
+              Selected Projects
+            </h2>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
+          {/* Tab-style filter */}
+          <div className="flex gap-0.5 p-1 bg-zinc-200 dark:bg-zinc-800 rounded-lg self-start sm:self-auto">
+            {categories.map((cat) => (
               <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                  activeFilter === category
-                    ? 'bg-gradient-to-r from-green-600 to-blue-600 text-white shadow-lg'
-                    : darkMode
-                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-4 py-1.5 text-sm rounded-md font-medium ${
+                  filter === cat
+                    ? 'bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 shadow-sm'
+                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
                 }`}
               >
-                <Filter size={16} className="inline mr-2" />
-                {category}
+                {cat}
               </button>
             ))}
           </div>
+        </div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <div
-                key={project.id}
-                className={`rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
-                  darkMode ? 'bg-gray-700' : 'bg-white'
-                } ${project.featured ? 'ring-2 ring-green-500/50' : ''}`}
-              >
-                {project.featured && (
-                  <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white text-xs font-bold px-3 py-1 text-center">
-                    ⭐ FEATURED PROJECT
-                  </div>
-                )}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors duration-200"
-                      >
-                        {project.liveUrl.includes('play.google.com') ? <Smartphone size={18} /> : <ExternalLink size={18} />}
-                      </a>
-                      <a
-                        href={project.githubUrl}
-                        className="p-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors duration-200"
-                      >
-                        <Github size={18} />
-                      </a>
-                    </div>
-                  </div>
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {filtered.map((project) => (
+            <div
+              key={project.id}
+              className="group rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-zinc-300 dark:hover:border-zinc-700"
+            >
+              {/* Image */}
+              <div className="relative h-44 overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Hover overlay with links */}
+                <div className="absolute inset-0 bg-zinc-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-3 gap-2">
+                  {project.liveUrl !== '#' && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 bg-white/10 border border-white/15 rounded-lg text-white hover:bg-white/20"
+                    >
+                      {project.liveUrl.includes('play.google') ? (
+                        <Smartphone size={15} />
+                      ) : (
+                        <ExternalLink size={15} />
+                      )}
+                    </a>
+                  )}
+                  {project.githubUrl !== '#' && (
+                    <a
+                      href={project.githubUrl}
+                      className="p-1.5 bg-white/10 border border-white/15 rounded-lg text-white hover:bg-white/20"
+                    >
+                      <Github size={15} />
+                    </a>
+                  )}
                 </div>
-                <div className="p-6">
-                  <h3
-                    className={`text-xl font-bold mb-3 ${
-                      darkMode ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {project.title}
-                  </h3>
-                  <p
-                    className={`text-sm mb-4 leading-relaxed ${
-                      darkMode ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
-                      <span
-                        key={index}
-                        className={`px-3 py-1 text-xs rounded-full ${
-                          darkMode
-                            ? 'bg-gray-600 text-gray-300'
-                            : 'bg-gray-100 text-gray-600'
-                        }`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                {project.featured && (
+                  <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-violet-600 text-white text-xs font-medium rounded-md">
+                    Featured
+                  </span>
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="p-5">
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

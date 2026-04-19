@@ -1,163 +1,149 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 
-interface HeroProps {
-  darkMode: boolean;
-}
+const roles = ['Android Developer', 'Jetpack Compose Expert', 'Kotlin Specialist', 'Mobile Architect'];
 
-const Hero: React.FC<HeroProps> = ({ darkMode }) => {
-  const [currentText, setCurrentText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const texts = ['Android Developer', 'Jetpack Compose Expert', 'Kotlin Specialist', 'Mobile Architect'];
+const Hero: React.FC = () => {
+  const [text, setText] = useState('');
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    const full = roles[roleIdx];
     const timeout = setTimeout(() => {
-      const currentFullText = texts[currentIndex];
-
-      if (!isDeleting) {
-        if (charIndex < currentFullText.length) {
-          setCurrentText(currentFullText.substring(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
+      if (!deleting) {
+        if (charIdx < full.length) {
+          setText(full.slice(0, charIdx + 1));
+          setCharIdx((c) => c + 1);
         } else {
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTimeout(() => setDeleting(true), 2200);
         }
       } else {
-        if (charIndex > 0) {
-          setCurrentText(currentFullText.substring(0, charIndex - 1));
-          setCharIndex(charIndex - 1);
+        if (charIdx > 0) {
+          setText(full.slice(0, charIdx - 1));
+          setCharIdx((c) => c - 1);
         } else {
-          setIsDeleting(false);
-          setCurrentIndex((currentIndex + 1) % texts.length);
+          setDeleting(false);
+          setRoleIdx((i) => (i + 1) % roles.length);
         }
       }
-    }, isDeleting ? 50 : 100);
-
+    }, deleting ? 35 : 75);
     return () => clearTimeout(timeout);
-  }, [charIndex, currentIndex, isDeleting, texts]);
+  }, [charIdx, roleIdx, deleting]);
+
+  const stats = [
+    { value: '7+', label: 'Years Experience' },
+    { value: '100K+', label: 'Daily Active Users' },
+    { value: '98%', label: 'Project Success Rate' },
+  ];
+
+  const socials = [
+    { icon: Github, href: 'https://github.com/rahullink1415', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/rahullink1415', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:rahul.link1415@gmail.com', label: 'Email' },
+  ];
 
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center justify-center relative overflow-hidden ${
-        darkMode ? 'bg-gray-900' : 'bg-gray-50'
-      }`}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-zinc-950"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-green-500/10 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-blue-500/10 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-12 h-12 bg-purple-500/10 rounded-full animate-ping"></div>
-        <div className="absolute bottom-10 right-10 w-24 h-24 bg-orange-500/10 rounded-full animate-bounce"></div>
-      </div>
+      {/* Dot grid */}
+      <div className="absolute inset-0 dot-grid-light dark:dot-grid opacity-40" />
 
-      <div className="container mx-auto px-6 text-center relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8 animate-fade-in">
-            <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-1">
-              <div
-                className={`w-full h-full rounded-full ${
-                  darkMode ? 'bg-gray-900' : 'bg-white'
-                } flex items-center justify-center text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent`}
-              >
-                RK
+      {/* Radial gradient overlay to give depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(139,92,246,0.08),transparent)]" />
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white dark:from-zinc-950 to-transparent" />
+
+      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-24 pb-16 text-center">
+        {/* Available badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-violet-500/25 bg-violet-500/8 text-violet-600 dark:text-violet-400 mb-10 select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          Available for Senior Android Roles
+        </div>
+
+        {/* Name */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight mb-5 leading-none">
+          Rahul Kumar
+        </h1>
+
+        {/* Typing role */}
+        <div className="h-10 mb-6 flex items-center justify-center">
+          <span className="font-mono text-lg md:text-xl text-violet-600 dark:text-violet-400">
+            {text}
+            <span className="animate-blink ml-0.5">_</span>
+          </span>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto mb-12 leading-relaxed">
+          Building scalable, high-performance Android applications with clean architecture,
+          Jetpack Compose, and a focus on exceptional user experiences.
+        </p>
+
+        {/* Stats */}
+        <div className="flex items-center justify-center gap-10 md:gap-16 mb-12">
+          {stats.map((stat, i) => (
+            <React.Fragment key={stat.label}>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-zinc-50 tabular-nums">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-zinc-500 dark:text-zinc-500 mt-0.5 whitespace-nowrap">
+                  {stat.label}
+                </div>
               </div>
-            </div>
-          </div>
-
-          <h1
-            className={`text-5xl md:text-7xl font-bold mb-6 ${
-              darkMode ? 'text-white' : 'text-gray-900'
-            }`}
-          >
-            Hi, I'm{' '}
-            <span className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Rahul Kumar
-            </span>
-          </h1>
-
-          <div className="h-16 mb-8">
-            <p
-              className={`text-2xl md:text-3xl ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}
-            >
-              I'm an{' '}
-              <span className="text-green-600 font-semibold">
-                {currentText}
-                <span className="animate-pulse">|</span>
-              </span>
-            </p>
-          </div>
-
-          <p
-            className={`text-lg md:text-xl mb-4 max-w-3xl mx-auto leading-relaxed ${
-              darkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}
-          >
-            7+ Years Kotlin Experience | 98% Project Success Rate
-          </p>
-
-          <p
-            className={`text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed ${
-              darkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}
-          >
-            Building scalable, high-performance mobile applications with clean architecture 
-            and user-centric design. Specialized in driving performance optimizations and 
-            seamless feature rollouts.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-            <a 
-              href="#projects"
-              className="px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-            >
-              View My Projects
-            </a>
-            <a
-              href="mailto:rahul.link1415@gmail.com?subject=from%20portfolio%20github"
-              className={`px-8 py-4 border-2 border-green-600 text-green-600 rounded-lg font-semibold text-lg hover:bg-green-600 hover:text-white transition-all duration-300 ${
-                darkMode ? 'hover:text-white' : ''
-              }`}
-            >
-              Contact Me
-            </a>
-          </div>
-
-          <div className="flex justify-center space-x-6 mb-16">
-            {[
-              { icon: Github, href: 'https://github.com/rahullink1415', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://www.linkedin.com/in/rahullink1415', label: 'LinkedIn' },
-              { icon: Mail, href: 'mailto:rahul.link1415@gmail.com', label: 'Email' },
-            ].map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                  darkMode
-                    ? 'bg-gray-800 text-gray-300 hover:bg-green-600 hover:text-white'
-                    : 'bg-white text-gray-600 hover:bg-green-600 hover:text-white shadow-lg'
-                }`}
-                aria-label={label}
-              >
-                <Icon size={24} />
-              </a>
-            ))}
-          </div>
+              {i < stats.length - 1 && (
+                <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800" />
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown
-            size={32}
-            className={darkMode ? 'text-gray-400' : 'text-gray-600'}
-          />
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+          <a
+            href="#projects"
+            className="px-6 py-2.5 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium rounded-lg w-full sm:w-auto text-center"
+          >
+            View Projects
+          </a>
+          <a
+            href="mailto:rahul.link1415@gmail.com?subject=from%20portfolio%20github"
+            className="px-6 py-2.5 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-sm font-medium rounded-lg w-full sm:w-auto text-center"
+          >
+            Get in Touch
+          </a>
+        </div>
+
+        {/* Social links */}
+        <div className="flex items-center justify-center gap-2">
+          {socials.map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              aria-label={label}
+              className="p-2 rounded-lg text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
+            >
+              <Icon size={19} />
+            </a>
+          ))}
         </div>
       </div>
+
+      {/* Scroll cue */}
+      <a
+        href="#about"
+        aria-label="Scroll to About"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-300 dark:text-zinc-700 hover:text-zinc-500 dark:hover:text-zinc-400"
+      >
+        <ChevronDown size={22} className="animate-bounce" />
+      </a>
     </section>
   );
 };

@@ -9,64 +9,30 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme) {
-      setDarkMode(JSON.parse(savedTheme));
-    }
+    const saved = localStorage.getItem('darkMode');
+    const initial = saved !== null ? JSON.parse(saved) : true;
+    setDarkMode(initial);
+    document.documentElement.classList.toggle('dark', initial);
   }, []);
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
 
-  // Smooth scrolling for navigation links
-  useEffect(() => {
-    const handleClick = (e: Event) => {
-      const target = e.target as HTMLAnchorElement;
-      if (target.hash) {
-        e.preventDefault();
-        const element = document.querySelector(target.hash);
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }
-      }
-    };
-
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', handleClick);
-    });
-
-    return () => {
-      links.forEach(link => {
-        link.removeEventListener('click', handleClick);
-      });
-    };
-  }, []);
-
   return (
-    <div className={`${darkMode ? 'dark' : ''}`}>
-      <div className="transition-colors duration-300">
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-        <Hero darkMode={darkMode} />
-        <About darkMode={darkMode} />
-        <Skills darkMode={darkMode} />
-        <Projects darkMode={darkMode} />
-        <Experience darkMode={darkMode} />
-        <Contact darkMode={darkMode} />
-        <Footer darkMode={darkMode} />
-      </div>
+    <div>
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Contact />
+      <Footer />
     </div>
   );
 }
